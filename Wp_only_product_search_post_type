@@ -1,0 +1,9 @@
+add_filter('pre_get_posts','lw_search_filter_pages');
+function lw_search_filter_pages($query) {
+    // Frontend search only
+    if ( ! is_admin() && $query->is_search() ) {
+        $query->set('post_type', 'product');
+        $query->set( 'wc_query', 'product_query' );
+    }
+    return $query;
+}
